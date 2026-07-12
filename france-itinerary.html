@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法國六日行程 · 9/23–9/28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mist:#E7ECE5; --paper:#FBFCF9; --paper-2:#F1F4ED;
+    --ink:#1E2621; --ink-soft:#586158;
+    --sage:#5E7356; --sage-deep:#465737;
+    --seine:#35586A; --seine-deep:#25404F;
+    --gold:#B4863E; --gold-soft:#F0E4CE; --cream:#F7F0E2;
+    --line:#D3DACD;
+    --font-display:'Fraunces','Noto Serif TC',serif;
+    --font-body:'Noto Serif TC','Fraunces',serif;
+    --font-mono:'Space Mono','Noto Serif TC',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--mist);color:var(--ink);font-family:var(--font-body);
+    line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px 90px}
+
+  /* HERO */
+  .hero{padding:64px 0 30px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--sage);margin-bottom:22px}
+  .hero h1{font-family:var(--font-display);font-weight:700;
+    font-size:clamp(3rem,11vw,5.4rem);line-height:.98;letter-spacing:-.01em}
+  .hero .sub-latin{font-family:var(--font-display);font-style:italic;font-weight:500;
+    font-size:clamp(1.1rem,3.5vw,1.5rem);color:var(--sage-deep);margin-top:8px}
+  .hero .vibe{margin-top:20px;font-size:1.05rem;color:var(--ink-soft);max-width:34ch}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:26px;
+    font-family:var(--font-mono);font-size:.8rem;color:var(--ink-soft)}
+  .meta b{color:var(--ink);font-weight:700}
+  .route{margin-top:24px;font-family:var(--font-mono);font-size:.82rem;color:var(--sage-deep);
+    display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+  .route .arw{color:var(--gold);font-weight:700}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin:24px 0 4px;
+    font-family:var(--font-mono);font-size:.7rem;color:var(--ink-soft)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .glow{width:11px;height:11px;border-radius:50%;background:var(--gold);
+    box-shadow:0 0 0 3px var(--gold-soft);display:inline-block;flex:none}
+  .pin-demo{font-family:var(--font-mono);font-size:.64rem;color:var(--seine);
+    border:1px solid var(--seine);border-radius:20px;padding:2px 8px}
+
+  /* STAYS + CAR */
+  .stays{margin-top:34px;display:grid;gap:12px}
+  .stay{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .stay .tag{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.05em;color:#fff;
+    background:var(--sage);border-radius:6px;padding:3px 8px;white-space:nowrap;margin-top:3px}
+  .stay .tag.car{background:var(--seine)}
+  .stay .s-name{font-weight:600;color:var(--ink)}
+  .stay .s-note{font-size:.9rem;color:var(--ink-soft);margin-top:2px}
+  .stay .s-body{flex:1}
+
+  /* DAY */
+  .day{margin-top:40px;background:var(--paper);border:1px solid var(--line);
+    border-radius:18px;padding:28px 26px 24px}
+  .day-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding-bottom:18px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  .d-num{font-family:var(--font-mono);font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.05em}
+  .d-date{font-family:var(--font-mono);font-size:1.05rem;color:var(--ink);font-weight:700}
+  .d-week{font-family:var(--font-mono);font-size:.82rem;color:var(--ink-soft)}
+  .d-theme{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--sage-deep);
+    flex-basis:100%;margin-top:2px;letter-spacing:.01em}
+
+  .entry{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:14px 0 14px 14px;
+    border-left:2px solid var(--line);margin-left:2px;position:relative}
+  .entry + .entry{border-top:1px dashed var(--line)}
+  .entry.photo{border-left-color:var(--gold);
+    background:linear-gradient(90deg,rgba(180,134,62,.05),transparent 60%)}
+  .entry.photo::before{content:"";position:absolute;left:-7px;top:18px;width:11px;height:11px;
+    border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+  .e-time{font-family:var(--font-mono);font-size:.82rem;font-weight:700;color:var(--seine);padding-top:1px}
+  .entry.photo .e-time{color:var(--gold)}
+  .e-time.soft{color:var(--ink-soft);font-weight:400}
+  .e-title{font-weight:600;color:var(--ink)}
+  .e-desc{font-size:.94rem;color:var(--ink-soft);margin-top:2px}
+  .e-desc b{color:var(--sage-deep);font-weight:600}
+
+  /* MAP PILLS */
+  .pins{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+  a.maps{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);
+    font-size:.71rem;letter-spacing:.02em;color:var(--seine);text-decoration:none;
+    border:1px solid var(--seine);border-radius:20px;padding:4px 10px;line-height:1.3;
+    transition:.18s ease;min-height:28px}
+  a.maps::before{content:"\1F4CD";font-size:.72rem}
+  a.maps:hover,a.maps:focus-visible{background:var(--seine);color:#fff;outline:none}
+  a.maps:focus-visible{box-shadow:0 0 0 3px rgba(53,88,106,.3)}
+
+  /* FOOD BLOCK */
+  .food{margin-top:16px;background:var(--cream);border:1px solid #E4D8BF;
+    border-radius:14px;padding:6px 18px 14px}
+  .food-h{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold);padding:12px 0 4px}
+  .frow{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;
+    padding:11px 0;border-top:1px dashed #E4D8BF}
+  .frow:first-of-type{border-top:none}
+  .fchip{font-family:var(--font-mono);font-size:.66rem;padding:3px 8px;border-radius:6px;
+    white-space:nowrap;font-weight:700;letter-spacing:.03em}
+  .c-meal{background:#E4EBDD;color:var(--sage-deep)}
+  .c-cafe{background:#DEE7EC;color:var(--seine-deep)}
+  .c-snack{background:#F0E4CE;color:#7A5A22}
+  .c-photo{background:#E8E4EC;color:#5B4A6B}
+  .f-name{font-weight:600;color:var(--ink)}
+  .f-name .alt{color:var(--ink-soft);font-weight:400}
+  .f-desc{font-size:.9rem;color:var(--ink-soft);margin-top:1px}
+  .f-desc b{color:var(--sage-deep);font-weight:600}
+  .f-warn{color:#9A5B2A;font-weight:600}
+
+  /* 9/27 OPTIONS */
+  .opt-intro{margin:44px 0 4px}
+  .opt-intro .d-num{color:var(--gold)}
+  .opt-intro h2{font-family:var(--font-display);font-weight:700;font-size:1.9rem;margin:6px 0 4px}
+  .opt-intro p{color:var(--ink-soft);font-size:.98rem}
+  .vote-flag{display:inline-block;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--gold);border:1px dashed var(--gold);border-radius:6px;
+    padding:3px 9px;margin-top:10px}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .option{border-radius:18px;padding:24px 22px;border:1px solid var(--line)}
+  .opt-a{background:linear-gradient(180deg,#EEF2E9,#FBFCF9);border-color:#C9D6BC}
+  .opt-b{background:linear-gradient(180deg,#E7EEF1,#FBFCF9);border-color:#BCD0D8}
+  .opt-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+    border-radius:50%;color:#fff;font-weight:700;font-family:var(--font-display);font-size:1.15rem}
+  .opt-a .opt-badge{background:var(--sage)}
+  .opt-b .opt-badge{background:var(--seine)}
+  .opt-head{display:flex;align-items:center;gap:12px}
+  .opt-head h3{font-family:var(--font-display);font-weight:600;font-size:1.25rem}
+  .opt-tag{font-size:.9rem;color:var(--ink-soft);margin:10px 0 14px;font-style:italic}
+  .opt-list{list-style:none}
+  .opt-list li{padding:9px 0;border-top:1px dashed var(--line);font-size:.94rem}
+  .opt-list li:first-child{border-top:none}
+  .opt-list .t{font-family:var(--font-mono);font-size:.74rem;color:var(--ink-soft);display:block}
+
+  .shared{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:22px 22px 18px}
+  .shared h4{font-family:var(--font-display);font-size:1.15rem;margin-bottom:6px}
+  .shared p{font-size:.94rem;color:var(--ink-soft)}
+
+  /* NOTES */
+  .notes{margin-top:48px}
+  .notes .d-num{color:var(--gold)}
+  .notes h2{font-family:var(--font-display);font-weight:700;font-size:1.9rem;margin:6px 0 18px}
+  .note-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .note h5{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--sage);margin-bottom:9px}
+  .note ul{list-style:none}
+  .note li{font-size:.9rem;color:var(--ink-soft);padding-left:16px;position:relative;margin-bottom:6px}
+  .note li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+  .note li b{color:var(--ink);font-weight:600}
+
+  footer{margin-top:54px;padding-top:22px;border-top:1px solid var(--line);
+    font-family:var(--font-mono);font-size:.74rem;color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media (max-width:640px){
+    .wrap{padding:0 15px 70px}
+    .hero{padding:46px 0 24px}
+    .entry{grid-template-columns:54px 1fr;gap:11px}
+    .options{grid-template-columns:1fr}
+    .note-grid{grid-template-columns:1fr}
+    .frow{grid-template-columns:1fr;gap:5px}
+  }
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+  @media print{body{background:#fff}.rv{opacity:1;transform:none}
+    .day,.option,.note,.stay,.food,.shared{break-inside:avoid}a.maps{border-color:#888;color:#333}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero rv">
+    <div class="eyebrow">Paris · Saint-Malo · Mont-Saint-Michel</div>
+    <h1>法國六日</h1>
+    <div class="sub-latin">Six unhurried days · autumn light</div>
+    <p class="vibe">一天一個主軸、其餘留白。以氛圍與自然的漫遊為主，跟著光線走。</p>
+    <div class="meta">
+      <span><b>9/23</b>&nbsp;(三) – <b>9/28</b>&nbsp;(一)</span><span>· 4 人</span><span>· 自駕旅行車</span>
+    </div>
+    <div class="route">巴黎 <span class="arw">→</span> 聖馬洛 <span class="arw">→</span> 聖米歇爾山 <span class="arw">→</span> 巴黎</div>
+    <div class="legend">
+      <span><i class="glow"></i> 黃金時刻 · 拍攝光線最美</span>
+      <span><i class="pin-demo">地圖</i> 點開 Google Maps</span>
+      <span>🍽 餐廳 ☕ 咖啡甜點 🍴 小吃 📷 拍照</span>
+    </div>
+  </header>
+
+  <!-- STAYS + CAR -->
+  <section class="stays rv">
+    <div class="stay"><span class="tag">9/23</span><div class="s-body">
+      <div class="s-name">Airbnb 整套公寓 · Ternes（17 區）</div>
+      <div class="s-note">近 Étoile／SIXT，入住 14:00 起（早到先寄行李）。</div></div></div>
+    <div class="stay"><span class="tag">9/24</span><div class="s-body">
+      <div class="s-name">Hôtel Mercure Mont Saint-Michel</div>
+      <div class="s-note">山下 La Caserne，免費接駁就在門口。車與行李放旅館，上山只帶相機。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Mercure+Mont+Saint-Michel">地圖</a></div></div></div>
+    <div class="stay"><span class="tag">9/25–28</span><div class="s-body">
+      <div class="s-name">Batignolles 飯店 · 70 Rue Truffaut（17 區）</div>
+      <div class="s-note">就在 Square des Batignolles 旁，每天的起點與終點。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=70+Rue+Truffaut+75017+Paris">地圖</a></div></div></div>
+    <div class="stay"><span class="tag car">取車</span><div class="s-body">
+      <div class="s-name">SIXT · Porte Maillot（自排旅行車）</div>
+      <div class="s-note">全險、里程不限，€328.30。9/24 取、9/25 還，時間彈性。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=SIXT+Neuilly+Porte+Maillot">地圖</a></div></div></div>
+  </section>
+
+  <!-- 9/23 -->
+  <section class="day rv">
+    <div class="day-head"><span class="d-num">DAY 01</span><span class="d-date">9 / 23</span>
+      <span class="d-week">週三 · Wed</span><span class="d-theme">抵達．17 區輕鬆漫遊</span></div>
+    <div class="entry"><div class="e-time soft">上午</div><div class="e-body">
+      <div class="e-title">進城 · 寄行李 · Rue Poncelet 市集街</div>
+      <div class="e-desc">07:55 落地，進城後先寄放行李（未入住）。在 Poncelet 市集街喝咖啡、吃可頌、買水果，慢慢醒。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rue+Poncelet+market+Paris+17">Rue Poncelet</a></div></div></div>
+    <div class="entry"><div class="e-time soft">中午前</div><div class="e-body">
+      <div class="e-title">蒙梭公園（Parc Monceau）散步</div>
+      <div class="e-desc">17 區最優雅的公園，小神殿、廊柱、池塘，好拍好放空，離住處近。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parc+Monceau+Paris">Parc Monceau</a></div></div></div>
+    <div class="entry"><div class="e-time soft">中午</div><div class="e-body">
+      <div class="e-title">午餐 · 14:00 正式入住</div>
+      <div class="e-desc">附近輕鬆午餐；14:00 入住後想休息就回房緩一下。</div></div></div>
+    <div class="entry photo"><div class="e-time">19:45</div><div class="e-body">
+      <div class="e-title">凱旋門 · 登頂看日落</div>
+      <div class="e-desc">走去凱旋門，有力氣就登頂——拍鐵塔配 12 條放射大道。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Arc+de+Triomphe+Paris">凱旋門</a></div></div></div>
+    <div class="entry"><div class="e-time soft">晚上</div><div class="e-body">
+      <div class="e-title">Ternes 在地第一餐 · 正常時間睡</div>
+      <div class="e-desc">今天不碰車，低強度幫調時差。</div></div></div>
+    <div class="food">
+      <div class="food-h">🍽 餐廳</div>
+      <div class="frow"><span class="fchip c-meal">🍽 午餐</span><div>
+        <div class="f-name">Bistrot Monceau</div>
+        <div class="f-desc">蒙梭公園旁，5.0★，夫妻經營的午間限定小店，很地道。（週三開 08:30–18:00）</div>
+        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bistrot+Monceau+Rue+de+Logelbach+Paris">地圖</a></div></div></div>
+      <div class="frow"><span class="fchip c-meal">🍽 晚餐</span><div>
+        <div class="f-name">Le Paris 17 <span class="alt">／ 備案 Chez Gabrielle</span></div>
+        <div class="f-desc">凱旋門旁道地 bistro，老闆親自招呼，蝸牛・牛排・crème brûlée 招牌。備案更精緻。都週三開、<b>建議訂位</b>。</div>
+        <div class="pins">
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Paris+17+Rue+Guersant">Le Paris 17</a>
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Chez+Gabrielle+Rue+de+l%27Etoile+Paris">Chez Gabrielle</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- 9/24 -->
+  <section class="day rv">
+    <div class="day-head"><span class="d-num">DAY 02</span><span class="d-date">9 / 24</span>
+      <span class="d-week">週四 · Thu</span><span class="d-theme">自駕．聖馬洛 + 聖米歇爾山</span></div>
+    <div class="entry"><div class="e-time">08:00</div><div class="e-body">
+      <div class="e-title">退房 · 廂型計程車到 SIXT 取車</div>
+      <div class="e-desc">行李上車，走 A14／A13 往西——幾乎不碰市中心、避開凱旋門圓環。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=SIXT+Neuilly+Porte+Maillot">SIXT 取車</a></div></div></div>
+    <div class="entry"><div class="e-time">13:30</div><div class="e-body">
+      <div class="e-title">聖馬洛 · 午餐 + 古城牆散步</div>
+      <div class="e-desc">巴黎到這約 400+ km、開車 4 小時多。午餐 + 城牆繞一圈約 1.5h。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Saint-Malo+Intra-Muros">Saint-Malo Intra-Muros</a></div></div></div>
+    <div class="entry"><div class="e-time">16:30</div><div class="e-body">
+      <div class="e-title">前往聖米歇爾山（約 50 分）· 入住 Mercure</div>
+      <div class="e-desc">入住 15:00 起，車與行李放旅館停車場、搭接駁上山。旅館後方有沿河小徑可散步約 30 分到山腳（白天很美）。園區「出場付費」，旅館給密碼。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mont-Saint-Michel">聖米歇爾山</a></div></div></div>
+    <div class="entry photo"><div class="e-time">19:45</div><div class="e-body">
+      <div class="e-title">橋上夕陽剪影</div>
+      <div class="e-desc">9 月底日落約 19:45，別太早收工。天全黑後（約 20:45+）拍點燈夜景。<b>夜拍前確認末班接駁車</b>。</div></div></div>
+    <div class="food">
+      <div class="food-h">🍴 聖馬洛必吃（布列塔尼名物）</div>
+      <div class="frow"><span class="fchip c-snack">🍴 小吃</span><div>
+        <div class="f-name">鹹味蕎麥可麗餅 galette + 蘋果酒 cidre</div>
+        <div class="f-desc">推 <b>La Touline</b>（城內最高分 4.8★）或 <b>Le Corps de Garde</b>（城牆上、有海景，超好拍）。可帶 kouign-amann 焦糖奶油酥、鹹奶油焦糖當伴手禮。</div>
+        <div class="pins">
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Touline+Saint-Malo">La Touline</a>
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Corps+de+Garde+Saint-Malo">Le Corps de Garde</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- 9/25 -->
+  <section class="day rv">
+    <div class="day-head"><span class="d-num">DAY 03</span><span class="d-date">9 / 25</span>
+      <span class="d-week">週五 · Fri</span><span class="d-theme">順光拍攝 + 回巴黎</span></div>
+    <div class="entry photo"><div class="e-time">07:00</div><div class="e-body">
+      <div class="e-title">清晨散步 · 晨霧商店街</div>
+      <div class="e-desc">最安靜、霧氣最美的時段，趁遊客未到。</div></div></div>
+    <div class="entry"><div class="e-time soft">早餐</div><div class="e-body">
+      <div class="e-title">旅館早餐 · 退房 · 行李裝車</div>
+      <div class="e-desc">你們有訂旅館早餐；吃完退房、把行李搬上停在旅館的車。</div></div></div>
+    <div class="entry"><div class="e-time">09:00</div><div class="e-body">
+      <div class="e-title">進入修道院參觀（建議預約第一批）</div></div></div>
+    <div class="entry photo"><div class="e-time">11:00</div><div class="e-body">
+      <div class="e-title">木棧道順光拍攝 · 全程重頭戲</div>
+      <div class="e-desc">光線正面打在山體，全趟最重要的一刻。</div></div></div>
+    <div class="entry"><div class="e-time">13:30</div><div class="e-body">
+      <div class="e-title">城內午餐 + 伴手禮 · 出發回巴黎</div>
+      <div class="e-desc">拍完盡快上路，<b>避開週五傍晚 A13 進巴黎尖峰</b>。SIXT 還車、錄影驗車，入住 Batignolles。晚上附近輕鬆吃。</div></div></div>
+  </section>
+
+  <!-- 9/26 -->
+  <section class="day rv">
+    <div class="day-head"><span class="d-num">DAY 04</span><span class="d-date">9 / 26</span>
+      <span class="d-week">週六 · Sat</span><span class="d-theme">蒙馬特 + 塞納河（放鬆版）</span></div>
+    <div class="entry"><div class="e-time soft">上午</div><div class="e-body">
+      <div class="e-title">蒙馬特慢逛（早去趁人少）</div>
+      <div class="e-desc">聖心堂俯瞰、後山葡萄園、爬滿常春藤的石板巷。</div>
+      <div class="pins">
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilique+du+Sacre-Coeur+Montmartre">聖心堂</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Clos+Montmartre+vineyard+Paris">葡萄園</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Place+du+Tertre+Paris">Place du Tertre</a></div></div></div>
+    <div class="entry"><div class="e-time soft">下午</div><div class="e-body">
+      <div class="e-title">留白 · 中央花園散步</div>
+      <div class="e-desc">回公寓休息，或就近晃 Palais-Royal 迴廊花園、杜樂麗花園（在傍晚遊船那帶）。</div>
+      <div class="pins">
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Jardin+du+Palais+Royal+Paris">Palais-Royal</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Jardin+des+Tuileries+Paris">杜樂麗花園</a></div></div></div>
+    <div class="entry photo"><div class="e-time">20:30</div><div class="e-body">
+      <div class="e-title">塞納河遊船 · 趕 21:00 鐵塔閃燈</div>
+      <div class="e-desc">Pont Neuf 一帶上船較順。天黑後鐵塔每逢整點閃燈 5 分鐘。</div>
+      <div class="pins">
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pont+Neuf+Paris">Pont Neuf</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tour+Eiffel+Paris">艾菲爾鐵塔</a></div></div></div>
+    <div class="entry photo"><div class="e-time soft">遊船後</div><div class="e-body">
+      <div class="e-title">羅浮宮 Cour Napoléon 金字塔夜景</div>
+      <div class="e-desc">散步到打燈的玻璃金字塔前，廣場免費開放、就在 Pont Neuf 旁走幾分鐘（只逛廣場、不進館，累就直接回）。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pyramide+du+Louvre+Cour+Napoleon+Paris">羅浮宮金字塔</a></div></div></div>
+    <div class="food">
+      <div class="food-h">🍽 餐廳 · ☕ 順路必吃</div>
+      <div class="frow"><span class="fchip c-meal">🍽 午餐</span><div>
+        <div class="f-name">Le Poulbot <span class="alt">／ 備案 La Boîte aux Lettres</span></div>
+        <div class="f-desc">蒙馬特山上經典 bistro（4.7★／7400+），洋蔥湯・油封鴨。備案是 Rue Lepic 上的隱藏珍寶。</div>
+        <div class="pins">
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Poulbot+Rue+Poulbot+Paris">Le Poulbot</a>
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Boite+aux+Lettres+Rue+Lepic+Paris">La Boîte aux Lettres</a></div></div></div>
+      <div class="frow"><span class="fchip c-cafe">☕ 麵包</span><div>
+        <div class="f-name">Le Grenier à Pain（Rue des Abbesses）</div>
+        <div class="f-desc">得過「巴黎最佳法棍」獎，可頌・閃電泡芙・瑪德蓮都讚，蒙馬特早上順手買。（週二休、週六開）</div>
+        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Grenier+a+Pain+Rue+des+Abbesses+Paris">地圖</a></div></div></div>
+      <div class="frow"><span class="fchip c-cafe">☕ 甜點</span><div>
+        <div class="f-name">Angelina（Rue de Rivoli，近杜樂麗）</div>
+        <div class="f-desc">百年茶館，招牌 <b>L'Africain 濃熱巧克力 + Mont-Blanc 栗子蛋糕</b>，下午留白時段順路，每天營業。</div>
+        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Angelina+226+Rue+de+Rivoli+Paris">地圖</a></div></div></div>
+      <div class="frow"><span class="fchip c-cafe">☕ 冰淇淋</span><div>
+        <div class="f-name">Berthillon（聖路易島）</div>
+        <div class="f-desc">巴黎最有名手工冰淇淋／雪酪，離遊船碼頭走得到。（週一二休、週六開）</div>
+        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Berthillon+Rue+Saint-Louis+en+l%27Ile+Paris">地圖</a></div></div></div>
+      <div class="frow"><span class="fchip c-photo">📷 拍照</span><div>
+        <div class="f-name">La Maison Rose 粉紅小屋 · Le Consulat 街角</div>
+        <div class="f-desc">蒙馬特最上相的兩個角落，不必吃、拍照用。</div>
+        <div class="pins">
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Maison+Rose+Montmartre+Paris">La Maison Rose</a>
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Consulat+Montmartre+Paris">Le Consulat</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- 9/27 OPTIONS -->
+  <section class="opt-intro rv">
+    <span class="d-num">DAY 05</span>
+    <h2>9 / 27 · 週日</h2>
+    <p>兩案並列，都很綠、都符合你們的調性——差別在「震撼 vs 放鬆」。給大家表決。</p>
+    <span class="vote-flag">投票用 · A or B</span>
+  </section>
+  <div class="options rv">
+    <div class="option opt-a">
+      <div class="opt-head"><span class="opt-badge">A</span><h3>凡爾賽花園版</h3></div>
+      <div class="opt-tag">有凡爾賽的震撼 + 大量綠意，但要搭車、人潮較多。</div>
+      <ul class="opt-list">
+        <li><span class="t">08:30 出發</span>RER C 到凡爾賽（€2.55，Navigo Easy）。越早去越不塞。</li>
+        <li><span class="t">09:00 進宮</span>訂最早時段、買 <b>Passport 套票</b>（含週日噴泉花園）。鏡廳快速看過。</li>
+        <li><span class="t">重點</span>大花園、大運河可租划艇、Trianon、王后小村莊（田園農莊，超好拍、人少）。</li>
+        <li><span class="t">下午</span>回巴黎，接傍晚瑪黑（見下）。</li>
+      </ul>
+      <div class="pins">
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Chateau+de+Versailles">凡爾賽宮</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Grand+Canal+Chateau+de+Versailles">大運河</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hameau+de+la+Reine+Versailles">王后小村莊</a></div>
+    </div>
+    <div class="option opt-b">
+      <div class="opt-head"><span class="opt-badge">B</span><h3>巴黎在地綠意</h3></div>
+      <div class="opt-tag">運河 + 公園，最悠閒、最在地、不費力。</div>
+      <ul class="opt-list">
+        <li><span class="t">上午</span><b>Canal Saint-Martin</b> 沿岸慢走——鐵橋、綠蔭、河邊咖啡。</li>
+        <li><span class="t">早午餐</span><b>Holybelly</b> 超有名鬆餅（週日開 9–16）。⚠️ Du Pain et des Idées 週末休，別排。</li>
+        <li><span class="t">下午</span><b>Buttes-Chaumont</b>：懸崖、湖、山頂神廟、瀑布，躺草地放空。</li>
+        <li><span class="t">傍晚</span>往南下到瑪黑（見下）。</li>
+      </ul>
+      <div class="pins">
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Canal+Saint-Martin+Paris">Canal Saint-Martin</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Holybelly+5+Rue+Lucien+Sampaix+Paris">Holybelly</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parc+des+Buttes-Chaumont+Paris">Buttes-Chaumont</a></div>
+    </div>
+  </div>
+
+  <!-- 9/27 shared evening -->
+  <div class="shared rv">
+    <h4>傍晚（兩案共用）· 瑪黑血拼 + 慶祝晚餐</h4>
+    <p>孚日廣場 + 逛店（Merci、Mariage Frères、Enfants Rouges 市集），在瑪黑吃最後慶祝晚餐。瑪黑週日照常營業、氛圍比百貨好。</p>
+    <div class="pins">
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Place+des+Vosges+Paris">孚日廣場</a>
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Merci+concept+store+Paris">Merci</a>
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mariage+Freres+Marais+Paris">Mariage Frères</a>
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Marche+des+Enfants+Rouges+Paris">Enfants Rouges 市集</a></div>
+    <div class="food" style="margin-top:16px">
+      <div class="food-h">🍽 慶祝晚餐 · 🍴 必吃小吃</div>
+      <div class="frow"><span class="fchip c-meal">🍽 晚餐</span><div>
+        <div class="f-name">Le Colimaçon <span class="alt">／ 備案 Au Bourguignon du Marais</span></div>
+        <div class="f-desc">瑪黑主街上、氛圍濃，油封鴨・蝸牛；備案是紅酒燉牛名店。都<b>週日有開、務必訂位</b>。</div>
+        <div class="pins">
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Colimacon+Rue+Vieille+du+Temple+Paris">Le Colimaçon</a>
+          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Au+Bourguignon+du+Marais+Paris">Au Bourguignon</a></div></div></div>
+      <div class="frow"><span class="fchip c-snack">🍴 小吃</span><div>
+        <div class="f-name">L'As du Fallafel（Rue des Rosiers）</div>
+        <div class="f-desc">巴黎最有名的中東炸豆袋餅，排隊也值得。（週六休、<b>週日剛好有開</b>）Breizh Café 可麗餅、Jacques Genin 巧克力焦糖也在瑪黑。</div>
+        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=L%27As+du+Fallafel+Rue+des+Rosiers+Paris">地圖</a></div></div></div>
+    </div>
+    <p style="margin-top:14px"><b>想高效退稅／買大件</b>：Le Bon Marché（左岸、質感好、La Grande Épicerie 買食品伴手禮）或拉法葉／春天（週日開）；藥妝到 Citypharma（要排隊）。</p>
+    <div class="pins">
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Bon+Marche+Paris">Le Bon Marché</a>
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Haussmann+Paris">拉法葉</a>
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Citypharma+Rue+du+Four+Paris">Citypharma</a></div>
+  </div>
+
+  <!-- 9/28 -->
+  <section class="day rv">
+    <div class="day-head"><span class="d-num">DAY 06</span><span class="d-date">9 / 28</span>
+      <span class="d-week">週一 · Mon</span><span class="d-theme">回程</span></div>
+    <div class="entry"><div class="e-time soft">上午</div><div class="e-body">
+      <div class="e-title">Batignolles 咖啡可頌 · 最後散步</div>
+      <div class="e-desc">17 區隨便走進一間咖啡館都很道地，Square des Batignolles 再散一圈。</div></div></div>
+    <div class="entry"><div class="e-time">10:00</div><div class="e-body">
+      <div class="e-title">計程車前往 CDG（行李多）</div>
+      <div class="e-desc">抵達後辦退稅（PABLO 機器掃描）、報到、登機。下午班機返台。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Aeroport+Paris+Charles+de+Gaulle">CDG 機場</a></div></div></div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="notes rv">
+    <span class="d-num">MEMO</span>
+    <h2>行前重點</h2>
+    <div class="note-grid">
+      <div class="note"><h5>交通</h5><ul>
+        <li>每人一張 <b>Navigo Easy 卡</b>（不能共用），或手機儲值。紙票 6 月起停用。</li>
+        <li>市區單程統一 <b>€2.55</b>（凡爾賽也是同價）。</li>
+        <li>CDG 進城要 <b>€14 機場專用票</b>；4 人多行李去程建議計程車。</li></ul></div>
+      <div class="note"><h5>退稅</h5><ul>
+        <li>非歐盟旅客，<b>同一間店單日滿約 €100</b> 才能辦。</li>
+        <li>大店／百貨最順；瑪黑小店不一定提供。</li>
+        <li>最後在 CDG 用 <b>PABLO 機器</b>掃描。</li></ul></div>
+      <div class="note"><h5>訂位 / 訂票</h5><ul>
+        <li>熱門餐廳（Le Paris 17、Le Colimaçon 等）<b>先訂位</b>。</li>
+        <li>凡爾賽若選 A，提前訂 <b>Passport 套票</b>。</li>
+        <li>聖母院（若順路想進）到巴黎後上官網訂。</li></ul></div>
+      <div class="note"><h5>租車</h5><ul>
+        <li>還車別拖過 <b>「取車後 24 小時」</b>。</li>
+        <li>過路費、油錢<b>另計</b>。</li>
+        <li>帶主駕駕照 + 國際駕照 + 護照 + 登記名下信用卡。</li></ul></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>法國六日 · 9/23–9/28 · 4 人</span>
+    <span>慢步調 · 跟著光線走</span>
+  </footer>
+
+</div>
+<script>
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.rv');
+    if(reduce || !('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+    items.forEach(function(el){io.observe(el);});
+  })();
+</script>
+</body>
+</html>
