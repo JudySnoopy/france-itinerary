@@ -14,6 +14,7 @@
     --sage:#5E7356; --sage-deep:#465737;
     --seine:#35586A; --seine-deep:#25404F;
     --gold:#B4863E; --gold-soft:#F0E4CE; --cream:#F7F0E2;
+    --warn:#9A5B2A; --warn-bg:#FBEDE2;
     --line:#D3DACD;
     --font-display:'Fraunces','Noto Serif TC',serif;
     --font-body:'Noto Serif TC','Fraunces',serif;
@@ -59,6 +60,11 @@
   .stay .s-note{font-size:.9rem;color:var(--ink-soft);margin-top:2px}
   .stay .s-body{flex:1}
 
+  /* ANCHOR BAR */
+  .anchors{margin-top:16px;background:var(--gold-soft);border:1px solid #E4D8BF;
+    border-radius:12px;padding:12px 16px;font-size:.92rem;color:#6B4E1E}
+  .anchors b{color:var(--warn)}
+
   /* DAY */
   .day{margin-top:40px;background:var(--paper);border:1px solid var(--line);
     border-radius:18px;padding:28px 26px 24px}
@@ -70,19 +76,24 @@
   .d-theme{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--sage-deep);
     flex-basis:100%;margin-top:2px;letter-spacing:.01em}
 
-  .entry{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:14px 0 14px 14px;
+  .entry{display:grid;grid-template-columns:70px 1fr;gap:16px;padding:14px 0 14px 14px;
     border-left:2px solid var(--line);margin-left:2px;position:relative}
   .entry + .entry{border-top:1px dashed var(--line)}
   .entry.photo{border-left-color:var(--gold);
     background:linear-gradient(90deg,rgba(180,134,62,.05),transparent 60%)}
   .entry.photo::before{content:"";position:absolute;left:-7px;top:18px;width:11px;height:11px;
     border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
-  .e-time{font-family:var(--font-mono);font-size:.82rem;font-weight:700;color:var(--seine);padding-top:1px}
+  .e-time{font-family:var(--font-mono);font-size:.78rem;font-weight:700;color:var(--seine);padding-top:2px}
   .entry.photo .e-time{color:var(--gold)}
   .e-time.soft{color:var(--ink-soft);font-weight:400}
   .e-title{font-weight:600;color:var(--ink)}
   .e-desc{font-size:.94rem;color:var(--ink-soft);margin-top:2px}
   .e-desc b{color:var(--sage-deep);font-weight:600}
+  .warn{color:var(--warn);font-weight:600}
+  .pick{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+    padding:9px 12px;margin-top:8px;font-size:.92rem;color:var(--ink-soft)}
+  .pick b{color:var(--sage-deep)}
+  .pick + .pick{margin-top:6px}
 
   /* MAP PILLS */
   .pins{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
@@ -112,7 +123,6 @@
   .f-name .alt{color:var(--ink-soft);font-weight:400}
   .f-desc{font-size:.9rem;color:var(--ink-soft);margin-top:1px}
   .f-desc b{color:var(--sage-deep);font-weight:600}
-  .f-warn{color:#9A5B2A;font-weight:600}
 
   /* 9/27 OPTIONS */
   .opt-intro{margin:44px 0 4px}
@@ -149,8 +159,10 @@
   .notes h2{font-family:var(--font-display);font-weight:700;font-size:1.9rem;margin:6px 0 18px}
   .note-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .note.todo{background:var(--warn-bg);border-color:#EBD3BC}
   .note h5{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
     color:var(--sage);margin-bottom:9px}
+  .note.todo h5{color:var(--warn)}
   .note ul{list-style:none}
   .note li{font-size:.9rem;color:var(--ink-soft);padding-left:16px;position:relative;margin-bottom:6px}
   .note li::before{content:"—";position:absolute;left:0;color:var(--gold)}
@@ -166,7 +178,7 @@
   @media (max-width:640px){
     .wrap{padding:0 15px 70px}
     .hero{padding:46px 0 24px}
-    .entry{grid-template-columns:54px 1fr;gap:11px}
+    .entry{grid-template-columns:58px 1fr;gap:11px}
     .options{grid-template-columns:1fr}
     .note-grid{grid-template-columns:1fr}
     .frow{grid-template-columns:1fr;gap:5px}
@@ -192,90 +204,108 @@
     <div class="legend">
       <span><i class="glow"></i> 黃金時刻 · 拍攝光線最美</span>
       <span><i class="pin-demo">地圖</i> 點開 Google Maps</span>
-      <span>🍽 餐廳 ☕ 咖啡甜點 🍴 小吃 📷 拍照</span>
+      <span>🍽 餐廳 ☕ 咖啡甜點 🍴 小吃 🛒 市集 📷 拍照</span>
     </div>
   </header>
 
   <!-- STAYS + CAR -->
   <section class="stays rv">
     <div class="stay"><span class="tag">9/23</span><div class="s-body">
-      <div class="s-name">Airbnb 整套公寓 · Ternes（17 區）</div>
-      <div class="s-note">近 Étoile／SIXT，入住 14:00 起（早到先寄行李）。</div></div></div>
+      <div class="s-name">Airbnb · 1 Place Parmentier, Neuilly-sur-Seine（92200）</div>
+      <div class="s-note">地鐵 1 號線 Les Sablons 走路約 7 分鐘；SIXT 就在對街。入住 17:00 起（早到先寄行李）。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=1+Place+Parmentier+Neuilly-sur-Seine">地圖</a></div></div></div>
     <div class="stay"><span class="tag">9/24</span><div class="s-body">
       <div class="s-name">Hôtel Mercure Mont Saint-Michel</div>
       <div class="s-note">山下 La Caserne，免費接駁就在門口。車與行李放旅館，上山只帶相機。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Mercure+Mont+Saint-Michel">地圖</a></div></div></div>
     <div class="stay"><span class="tag">9/25–28</span><div class="s-body">
-      <div class="s-name">Batignolles 飯店 · 70 Rue Truffaut（17 區）</div>
-      <div class="s-note">就在 Square des Batignolles 旁，每天的起點與終點。</div>
+      <div class="s-name">民宿 · 70 Rue Truffaut, Batignolles（17 區）</div>
+      <div class="s-note">就在 Square des Batignolles 旁，後三天的起點與終點。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=70+Rue+Truffaut+75017+Paris">地圖</a></div></div></div>
     <div class="stay"><span class="tag car">取車</span><div class="s-body">
-      <div class="s-name">SIXT · Porte Maillot（自排旅行車）</div>
-      <div class="s-note">全險、里程不限，€328.30。9/24 取、9/25 還，時間彈性。</div>
+      <div class="s-name">SIXT · Porte Maillot／Neuilly（自排旅行車）</div>
+      <div class="s-note">Place Parmentier 對街、<b>走路 2 分鐘</b>。全險、里程不限，€328.30。9/24 取、9/25 還（時間彈性）。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=SIXT+Neuilly+Porte+Maillot">地圖</a></div></div></div>
   </section>
 
   <!-- 9/23 -->
   <section class="day rv">
     <div class="day-head"><span class="d-num">DAY 01</span><span class="d-date">9 / 23</span>
-      <span class="d-week">週三 · Wed</span><span class="d-theme">抵達．17 區輕鬆漫遊</span></div>
-    <div class="entry"><div class="e-time soft">上午</div><div class="e-body">
-      <div class="e-title">進城 · 寄行李 · Rue Poncelet 市集街</div>
-      <div class="e-desc">07:55 落地，進城後先寄放行李（未入住）。在 Poncelet 市集街喝咖啡、吃可頌、買水果，慢慢醒。</div>
-      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rue+Poncelet+market+Paris+17">Rue Poncelet</a></div></div></div>
-    <div class="entry"><div class="e-time soft">中午前</div><div class="e-body">
-      <div class="e-title">蒙梭公園（Parc Monceau）散步</div>
-      <div class="e-desc">17 區最優雅的公園，小神殿、廊柱、池塘，好拍好放空，離住處近。</div>
-      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parc+Monceau+Paris">Parc Monceau</a></div></div></div>
-    <div class="entry"><div class="e-time soft">中午</div><div class="e-body">
-      <div class="e-title">午餐 · 14:00 正式入住</div>
-      <div class="e-desc">附近輕鬆午餐；14:00 入住後想休息就回房緩一下。</div></div></div>
-    <div class="entry photo"><div class="e-time">19:45</div><div class="e-body">
-      <div class="e-title">凱旋門 · 登頂看日落</div>
-      <div class="e-desc">走去凱旋門，有力氣就登頂——拍鐵塔配 12 條放射大道。</div>
-      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Arc+de+Triomphe+Paris">凱旋門</a></div></div></div>
-    <div class="entry"><div class="e-time soft">晚上</div><div class="e-body">
-      <div class="e-title">Ternes 在地第一餐 · 正常時間睡</div>
-      <div class="e-desc">今天不碰車，低強度幫調時差。</div></div></div>
-    <div class="food">
-      <div class="food-h">🍽 餐廳</div>
-      <div class="frow"><span class="fchip c-meal">🍽 午餐</span><div>
-        <div class="f-name">Bistrot Monceau</div>
-        <div class="f-desc">蒙梭公園旁，5.0★，夫妻經營的午間限定小店，很地道。（週三開 08:30–18:00）</div>
-        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bistrot+Monceau+Rue+de+Logelbach+Paris">地圖</a></div></div></div>
-      <div class="frow"><span class="fchip c-meal">🍽 晚餐</span><div>
-        <div class="f-name">Le Paris 17 <span class="alt">／ 備案 Chez Gabrielle</span></div>
-        <div class="f-desc">凱旋門旁道地 bistro，老闆親自招呼，蝸牛・牛排・crème brûlée 招牌。備案更精緻。都週三開、<b>建議訂位</b>。</div>
-        <div class="pins">
-          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Paris+17+Rue+Guersant">Le Paris 17</a>
-          <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Chez+Gabrielle+Rue+de+l%27Etoile+Paris">Chez Gabrielle</a></div></div></div>
+      <span class="d-week">週三 · Wed</span><span class="d-theme">抵達．Neuilly 慢速開機</span></div>
+    <div class="anchors">
+      <b>固定三個錨點</b>：11:30 寄行李｜17:00 check in｜晚上簡單吃、早點睡。<b>中間全部彈性</b>——待在戶外、有太陽的地方，坐著也算，別回房躺。
     </div>
+    <div class="entry"><div class="e-time soft">07:55</div><div class="e-body">
+      <div class="e-title">落地 CDG · 出關</div></div></div>
+    <div class="entry"><div class="e-time">10:00</div><div class="e-body">
+      <div class="e-title">🚇 大眾運輸進城（約 1 小時 15 分–1 小時 30 分）</div>
+      <div class="e-desc"><b>RER B</b>（CDG → Châtelet–Les Halles，約 35 分）→ 轉 <b>地鐵 1 號線</b>（往 La Défense）→ <b>Les Sablons</b>（約 20 分）。</div>
+      <div class="pick">🎫 在機場買 <b>4 張機場專用票（約 €14／人）</b>，含 RER B + 轉乘地鐵（一般 €2.55 的票不能搭機場段）。順便一起辦 <b>Navigo Easy 卡</b>給之後幾天用。</div>
+      <div class="pick"><span class="warn">⚠️ Châtelet 轉乘走道很長、有樓梯</span>，4 個大行李箱會有點硬；RER B 車上也常擠。真的覺得不行，現場改叫廂型計程車也 OK。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Les+Sablons+metro+Neuilly-sur-Seine">Les Sablons 站</a></div></div></div>
+    <div class="entry"><div class="e-time">11:30</div><div class="e-body">
+      <div class="e-title">抵達 Place Parmentier · 寄放行李</div>
+      <div class="e-desc"><span class="warn">⚠️ 出發前先跟房東確認能不能寄行李</span>——17:00 才入住，這是唯一會卡住的地方。（備案：Nannybag／Bounce 寄物點）</div></div></div>
+    <div class="entry"><div class="e-time">11:45</div><div class="e-body">
+      <div class="e-title">🛒 Marché des Sablons（走路 3 分鐘）</div>
+      <div class="e-desc">週三 7:30–<b>13:30 收攤</b>（只開三、五、日），最在地的買菜市集。順便買明天車上的零食、和<b>今晚的簡單晚餐</b>（麵包、起司、水果）。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Marche+des+Sablons+Neuilly-sur-Seine">地圖</a></div></div></div>
+    <div class="entry"><div class="e-time">13:00</div><div class="e-body">
+      <div class="e-title">🍽 午餐（今天的大餐）· Brasserie Charlie</div>
+      <div class="e-desc">5 Place Parmentier，4.7★／3500+，12:00–23:30。蝸牛、牛排、洋蔥湯、巧克力慕斯，服務親切講英文。<b>建議先訂位。</b></div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Brasserie+Charlie+Place+Parmentier+Neuilly">地圖</a></div></div></div>
+    <div class="entry"><div class="e-time">14:30</div><div class="e-body">
+      <div class="e-title">下午二選一（時差低谷，慢慢走、多坐）</div>
+      <div class="pick">🌳 <b>布洛涅森林／Jardin d'Acclimatation</b>——每天 10:00–19:00，離 Les Sablons 站 500m。有樹有水有長椅。</div>
+      <div class="pick">🛍 <b>Rue Poncelet 市集街</b>（地鐵 1 號線約 7 分鐘）——吃飽了去逛街，再找間<b>露天咖啡座坐著發呆</b>。</div>
+      <div class="pins">
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Jardin+d%27Acclimatation+Paris">Jardin d'Acclimatation</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rue+Poncelet+market+Paris+17">Rue Poncelet</a></div></div></div>
+    <div class="entry"><div class="e-time">17:00</div><div class="e-body">
+      <div class="e-title">回 Place Parmentier check in</div>
+      <div class="e-desc">沖澡、換衣服、<b>小睡最多 30 分鐘（一定要設鬧鐘）</b>。今天唯一允許的休息。</div></div></div>
+    <div class="entry"><div class="e-time">18:45</div><div class="e-body">
+      <div class="e-title">香榭麗舍大道逛逛（選配）</div>
+      <div class="e-desc">地鐵 1 號線 Les Sablons → Charles de Gaulle–Étoile（約 5 分鐘）。<b>累就直接跳過</b>，第一天不用拚。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Avenue+des+Champs-Elysees+Paris">香榭麗舍</a></div></div></div>
+    <div class="entry photo"><div class="e-time">19:30</div><div class="e-body">
+      <div class="e-title">⭐ 凱旋門登頂看日落</div>
+      <div class="e-desc">日落約 <b>19:45</b>，提早上去卡位。拍鐵塔 + 12 條放射大道，巴黎最好的觀景台之一。先線上訂票免排隊。</div>
+      <div class="pick">🚨 <span class="warn">絕對不要走路穿越圓環</span>（12 條大道匯流、沒車道線）。走香榭那側的<b>地下道</b>過去。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Arc+de+Triomphe+Paris">凱旋門</a></div></div></div>
+    <div class="entry"><div class="e-time">20:45</div><div class="e-body">
+      <div class="e-title">回 Neuilly · 晚餐簡單吃 · 早點睡</div>
+      <div class="e-desc"><b>Gustave</b>（1 Place Parmentier，開到 23:00）點個輕食，或直接用市集買的麵包起司在民宿吃。今天不碰車。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Gustave+Place+Parmentier+Neuilly">Gustave</a></div></div></div>
   </section>
 
   <!-- 9/24 -->
   <section class="day rv">
     <div class="day-head"><span class="d-num">DAY 02</span><span class="d-date">9 / 24</span>
       <span class="d-week">週四 · Thu</span><span class="d-theme">自駕．聖馬洛 + 聖米歇爾山</span></div>
-    <div class="entry"><div class="e-time">08:00</div><div class="e-body">
-      <div class="e-title">退房 · 廂型計程車到 SIXT 取車</div>
-      <div class="e-desc">行李上車，走 A14／A13 往西——幾乎不碰市中心、避開凱旋門圓環。</div>
+    <div class="entry"><div class="e-time">08:30</div><div class="e-body">
+      <div class="e-title">退房 · 走路 2 分鐘到 SIXT 取車</div>
+      <div class="e-desc">行李上車 → A14／A13 往西。<b>幾乎不碰市中心、避開凱旋門圓環</b>，導航交給 Waze／Google Maps 就好。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=SIXT+Neuilly+Porte+Maillot">SIXT 取車</a></div></div></div>
-    <div class="entry"><div class="e-time">13:30</div><div class="e-body">
+    <div class="entry"><div class="e-time">13:45</div><div class="e-body">
       <div class="e-title">聖馬洛 · 午餐 + 古城牆散步</div>
-      <div class="e-desc">巴黎到這約 400+ km、開車 4 小時多。午餐 + 城牆繞一圈約 1.5h。</div>
+      <div class="e-desc">巴黎到這約 400+ km、開車 4 小時多（含休息）。城牆繞一圈約 1.5h。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Saint-Malo+Intra-Muros">Saint-Malo Intra-Muros</a></div></div></div>
-    <div class="entry"><div class="e-time">16:30</div><div class="e-body">
+    <div class="entry"><div class="e-time">16:45</div><div class="e-body">
       <div class="e-title">前往聖米歇爾山（約 50 分）· 入住 Mercure</div>
-      <div class="e-desc">入住 15:00 起，車與行李放旅館停車場、搭接駁上山。旅館後方有沿河小徑可散步約 30 分到山腳（白天很美）。園區「出場付費」，旅館給密碼。</div>
+      <div class="e-desc">車與行李放旅館停車場、搭門口接駁上山。旅館後方有沿 Couesnon 河小徑，可散步約 30 分到山腳（白天很美、避人潮）。園區「出場付費」，旅館會給密碼。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mont-Saint-Michel">聖米歇爾山</a></div></div></div>
     <div class="entry photo"><div class="e-time">19:45</div><div class="e-body">
-      <div class="e-title">橋上夕陽剪影</div>
-      <div class="e-desc">9 月底日落約 19:45，別太早收工。天全黑後（約 20:45+）拍點燈夜景。<b>夜拍前確認末班接駁車</b>。</div></div></div>
+      <div class="e-title">📷 橋上夕陽剪影</div>
+      <div class="e-desc">9 月底日落約 19:45，別太早收工。</div></div></div>
+    <div class="entry photo"><div class="e-time">20:45+</div><div class="e-body">
+      <div class="e-title">📷 天全黑後拍點燈夜景</div>
+      <div class="e-desc"><span class="warn">⚠️ 夜拍前先跟櫃台確認末班接駁車時間</span>，不然摸黑走 2.5 km。</div></div></div>
     <div class="food">
       <div class="food-h">🍴 聖馬洛必吃（布列塔尼名物）</div>
       <div class="frow"><span class="fchip c-snack">🍴 小吃</span><div>
         <div class="f-name">鹹味蕎麥可麗餅 galette + 蘋果酒 cidre</div>
-        <div class="f-desc">推 <b>La Touline</b>（城內最高分 4.8★）或 <b>Le Corps de Garde</b>（城牆上、有海景，超好拍）。可帶 kouign-amann 焦糖奶油酥、鹹奶油焦糖當伴手禮。</div>
+        <div class="f-desc">推 <b>La Touline</b>（城內最高分 4.8★）或 <b>Le Corps de Garde</b>（城牆上、有海景，超好拍）。伴手禮：kouign-amann 焦糖奶油酥、鹹奶油焦糖。</div>
         <div class="pins">
           <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Touline+Saint-Malo">La Touline</a>
           <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Corps+de+Garde+Saint-Malo">Le Corps de Garde</a></div></div></div>
@@ -287,68 +317,71 @@
     <div class="day-head"><span class="d-num">DAY 03</span><span class="d-date">9 / 25</span>
       <span class="d-week">週五 · Fri</span><span class="d-theme">順光拍攝 + 回巴黎</span></div>
     <div class="entry photo"><div class="e-time">07:00</div><div class="e-body">
-      <div class="e-title">清晨散步 · 晨霧商店街</div>
+      <div class="e-title">📷 清晨散步 · 晨霧商店街</div>
       <div class="e-desc">最安靜、霧氣最美的時段，趁遊客未到。</div></div></div>
     <div class="entry"><div class="e-time soft">早餐</div><div class="e-body">
       <div class="e-title">旅館早餐 · 退房 · 行李裝車</div>
-      <div class="e-desc">你們有訂旅館早餐；吃完退房、把行李搬上停在旅館的車。</div></div></div>
+      <div class="e-desc">退房是中午 12:00、而整個上午在山上——<b>吃完早餐先退房、把行李搬上停在旅館的車</b>，回程直接牽車走最省事。</div></div></div>
     <div class="entry"><div class="e-time">09:00</div><div class="e-body">
       <div class="e-title">進入修道院參觀（建議預約第一批）</div></div></div>
     <div class="entry photo"><div class="e-time">11:00</div><div class="e-body">
-      <div class="e-title">木棧道順光拍攝 · 全程重頭戲</div>
+      <div class="e-title">⭐📷 木棧道順光拍攝 · 全程重頭戲</div>
       <div class="e-desc">光線正面打在山體，全趟最重要的一刻。</div></div></div>
     <div class="entry"><div class="e-time">13:30</div><div class="e-body">
       <div class="e-title">城內午餐 + 伴手禮 · 出發回巴黎</div>
-      <div class="e-desc">拍完盡快上路，<b>避開週五傍晚 A13 進巴黎尖峰</b>。SIXT 還車、錄影驗車，入住 Batignolles。晚上附近輕鬆吃。</div></div></div>
+      <div class="e-desc">拍完盡快上路，<b>避開週五傍晚 A13 進巴黎尖峰</b>。SIXT 還車、<b>錄影驗車 + 拍油表</b>，入住 Batignolles 民宿。晚上附近輕鬆吃。</div></div></div>
   </section>
 
   <!-- 9/26 -->
   <section class="day rv">
     <div class="day-head"><span class="d-num">DAY 04</span><span class="d-date">9 / 26</span>
-      <span class="d-week">週六 · Sat</span><span class="d-theme">蒙馬特 + 塞納河（放鬆版）</span></div>
+      <span class="d-week">週六 · Sat</span><span class="d-theme">蒙馬特 + 鐵塔 + 塞納河</span></div>
     <div class="entry"><div class="e-time soft">上午</div><div class="e-body">
       <div class="e-title">蒙馬特慢逛（早去趁人少）</div>
-      <div class="e-desc">聖心堂俯瞰、後山葡萄園、爬滿常春藤的石板巷。</div>
+      <div class="e-desc">聖心堂俯瞰全巴黎、後山葡萄園、爬滿常春藤的石板巷。離 Batignolles 很近。</div>
       <div class="pins">
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilique+du+Sacre-Coeur+Montmartre">聖心堂</a>
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Clos+Montmartre+vineyard+Paris">葡萄園</a>
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Place+du+Tertre+Paris">Place du Tertre</a></div></div></div>
-    <div class="entry"><div class="e-time soft">下午</div><div class="e-body">
-      <div class="e-title">留白 · 中央花園散步</div>
-      <div class="e-desc">回公寓休息，或就近晃 Palais-Royal 迴廊花園、杜樂麗花園（在傍晚遊船那帶）。</div>
+    <div class="entry"><div class="e-time">14:30</div><div class="e-body">
+      <div class="e-title">回民宿休息</div>
+      <div class="e-desc">下午留白，養傍晚的體力。</div></div></div>
+    <div class="entry"><div class="e-time">16:30</div><div class="e-body">
+      <div class="e-title">🗼 鐵塔一帶晃晃</div>
+      <div class="e-desc"><b>Trocadéro 廣場</b>拍鐵塔最經典的角度 → <b>戰神廣場</b>草地坐著看鐵塔 → <b>天鵝島（Île aux Cygnes）</b>：塞納河中央的樹蔭步道，盡頭有迷你自由女神，<b>遊客極少</b>，能拍到鐵塔配鐵橋 → <b>Rue Cler 市集街</b>就在附近。</div>
       <div class="pins">
-        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Jardin+du+Palais+Royal+Paris">Palais-Royal</a>
-        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Jardin+des+Tuileries+Paris">杜樂麗花園</a></div></div></div>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Place+du+Trocadero+Paris">Trocadéro</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Champ+de+Mars+Paris">戰神廣場</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Ile+aux+Cygnes+Paris">天鵝島</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rue+Cler+Paris">Rue Cler</a></div></div></div>
+    <div class="entry"><div class="e-time">19:00</div><div class="e-body">
+      <div class="e-title">移動到 Pont Neuf 一帶 · 輕食晚餐</div>
+      <div class="e-desc">順便吃 ☕ <b>Berthillon</b> 冰淇淋（聖路易島，就在旁邊）。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Berthillon+Rue+Saint-Louis+en+l%27Ile+Paris">Berthillon</a></div></div></div>
     <div class="entry photo"><div class="e-time">20:30</div><div class="e-body">
-      <div class="e-title">塞納河遊船 · 趕 21:00 鐵塔閃燈</div>
-      <div class="e-desc">Pont Neuf 一帶上船較順。天黑後鐵塔每逢整點閃燈 5 分鐘。</div>
-      <div class="pins">
-        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pont+Neuf+Paris">Pont Neuf</a>
-        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tour+Eiffel+Paris">艾菲爾鐵塔</a></div></div></div>
+      <div class="e-title">📷 塞納河遊船 · 21:00 從船上看鐵塔閃燈</div>
+      <div class="e-desc">Pont Neuf 上船。天黑後鐵塔每逢整點閃燈 5 分鐘（日落約 19:45）。</div>
+      <div class="pick">💡 想更省力：<b>直接在鐵塔旁的 Port de la Bourdonnais 搭船</b>，不用移動到 Pont Neuf——但就不順路去羅浮宮金字塔了。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Vedettes+du+Pont+Neuf+Paris">Pont Neuf 碼頭</a></div></div></div>
     <div class="entry photo"><div class="e-time soft">遊船後</div><div class="e-body">
-      <div class="e-title">羅浮宮 Cour Napoléon 金字塔夜景</div>
-      <div class="e-desc">散步到打燈的玻璃金字塔前，廣場免費開放、就在 Pont Neuf 旁走幾分鐘（只逛廣場、不進館，累就直接回）。</div>
+      <div class="e-title">📷 羅浮宮 Cour Napoléon 金字塔夜景</div>
+      <div class="e-desc">走 5 分鐘，廣場免費開放。打燈的玻璃金字塔夜拍很美，<b>只逛廣場、不進館</b>，累就直接回。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pyramide+du+Louvre+Cour+Napoleon+Paris">羅浮宮金字塔</a></div></div></div>
     <div class="food">
       <div class="food-h">🍽 餐廳 · ☕ 順路必吃</div>
       <div class="frow"><span class="fchip c-meal">🍽 午餐</span><div>
         <div class="f-name">Le Poulbot <span class="alt">／ 備案 La Boîte aux Lettres</span></div>
-        <div class="f-desc">蒙馬特山上經典 bistro（4.7★／7400+），洋蔥湯・油封鴨。備案是 Rue Lepic 上的隱藏珍寶。</div>
+        <div class="f-desc">蒙馬特山上經典 bistro（4.7★／7400+），洋蔥湯・油封鴨。備案是 Rue Lepic 上的隱藏珍寶、現代法式時令菜。</div>
         <div class="pins">
           <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Poulbot+Rue+Poulbot+Paris">Le Poulbot</a>
           <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Boite+aux+Lettres+Rue+Lepic+Paris">La Boîte aux Lettres</a></div></div></div>
       <div class="frow"><span class="fchip c-cafe">☕ 麵包</span><div>
         <div class="f-name">Le Grenier à Pain（Rue des Abbesses）</div>
-        <div class="f-desc">得過「巴黎最佳法棍」獎，可頌・閃電泡芙・瑪德蓮都讚，蒙馬特早上順手買。（週二休、週六開）</div>
+        <div class="f-desc">得過「巴黎最佳法棍」獎，可頌・閃電泡芙・瑪德蓮都讚，蒙馬特早上順手買。（週二休、<b>週六開</b>）</div>
         <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Grenier+a+Pain+Rue+des+Abbesses+Paris">地圖</a></div></div></div>
-      <div class="frow"><span class="fchip c-cafe">☕ 甜點</span><div>
-        <div class="f-name">Angelina（Rue de Rivoli，近杜樂麗）</div>
-        <div class="f-desc">百年茶館，招牌 <b>L'Africain 濃熱巧克力 + Mont-Blanc 栗子蛋糕</b>，下午留白時段順路，每天營業。</div>
-        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Angelina+226+Rue+de+Rivoli+Paris">地圖</a></div></div></div>
       <div class="frow"><span class="fchip c-cafe">☕ 冰淇淋</span><div>
         <div class="f-name">Berthillon（聖路易島）</div>
-        <div class="f-desc">巴黎最有名手工冰淇淋／雪酪，離遊船碼頭走得到。（週一二休、週六開）</div>
-        <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Berthillon+Rue+Saint-Louis+en+l%27Ile+Paris">地圖</a></div></div></div>
+        <div class="f-desc">巴黎最有名手工冰淇淋／雪酪，離遊船碼頭走得到。（週一二休、<b>週六開</b>）</div></div></div>
       <div class="frow"><span class="fchip c-photo">📷 拍照</span><div>
         <div class="f-name">La Maison Rose 粉紅小屋 · Le Consulat 街角</div>
         <div class="f-desc">蒙馬特最上相的兩個角落，不必吃、拍照用。</div>
@@ -370,26 +403,32 @@
       <div class="opt-head"><span class="opt-badge">A</span><h3>凡爾賽花園版</h3></div>
       <div class="opt-tag">有凡爾賽的震撼 + 大量綠意，但要搭車、人潮較多。</div>
       <ul class="opt-list">
-        <li><span class="t">08:30 出發</span>RER C 到凡爾賽（€2.55，Navigo Easy）。越早去越不塞。</li>
-        <li><span class="t">09:00 進宮</span>訂最早時段、買 <b>Passport 套票</b>（含週日噴泉花園）。鏡廳快速看過。</li>
-        <li><span class="t">重點</span>大花園、大運河可租划艇、Trianon、王后小村莊（田園農莊，超好拍、人少）。</li>
-        <li><span class="t">下午</span>回巴黎，接傍晚瑪黑（見下）。</li>
+        <li><span class="t">08:30 出發</span>RER C 到凡爾賽（€2.55）。越早去越不塞。</li>
+        <li><span class="t">09:00 進宮</span>訂最早時段、買 <b>Passport 套票</b>（含週日音樂噴泉花園）。鏡廳快速看過。</li>
+        <li><span class="t">重點</span>大花園、大運河可租划艇、Trianon、<b>王后小村莊</b>（田園農莊，超好拍、人少）。</li>
+        <li><span class="t">中午</span>鎮上午餐 → 約 14:00 回巴黎。</li>
+        <li><span class="t">15:30–16:30 🛒</span><b>Marché des Enfants Rouges</b>（瑪黑，週日 8:30–<b>17:00 關</b>）——巴黎最老的有頂市集，各國小吃攤，當下午茶剛好。</li>
+        <li><span class="t">⚠️ 注意</span>選 A 就<b>趕不上 Marché Bastille</b>（週日 14:30 收攤）。</li>
       </ul>
       <div class="pins">
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Chateau+de+Versailles">凡爾賽宮</a>
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Grand+Canal+Chateau+de+Versailles">大運河</a>
-        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hameau+de+la+Reine+Versailles">王后小村莊</a></div>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hameau+de+la+Reine+Versailles">王后小村莊</a>
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Marche+des+Enfants+Rouges+Paris">Enfants Rouges</a></div>
     </div>
     <div class="option opt-b">
       <div class="opt-head"><span class="opt-badge">B</span><h3>巴黎在地綠意</h3></div>
-      <div class="opt-tag">運河 + 公園，最悠閒、最在地、不費力。</div>
+      <div class="opt-tag">市集 + 運河 + 公園，最悠閒、最在地、不費力。</div>
       <ul class="opt-list">
-        <li><span class="t">上午</span><b>Canal Saint-Martin</b> 沿岸慢走——鐵橋、綠蔭、河邊咖啡。</li>
-        <li><span class="t">早午餐</span><b>Holybelly</b> 超有名鬆餅（週日開 9–16）。⚠️ Du Pain et des Idées 週末休，別排。</li>
-        <li><span class="t">下午</span><b>Buttes-Chaumont</b>：懸崖、湖、山頂神廟、瀑布，躺草地放空。</li>
-        <li><span class="t">傍晚</span>往南下到瑪黑（見下）。</li>
+        <li><span class="t">09:30–11:00 🛒</span><b>Marché Bastille</b>（Bd Richard-Lenoir，週日 7:00–14:30）——巴黎最大露天市集之一。<b>別 7 點去</b>，攤販還在架，10–11 點最熱鬧。</li>
+        <li><span class="t">💡 動線紅利</span>它就蓋在 <b>Canal Saint-Martin 的加蓋段</b>上，逛完直接沿林蔭大道往北走就是運河散步。</li>
+        <li><span class="t">11:00–12:30</span><b>Canal Saint-Martin</b> 露天段——鐵橋、綠蔭、在地人河邊野餐。</li>
+        <li><span class="t">12:30 ☕</span><b>Holybelly</b> 早午餐鬆餅（週日 9–16）。⚠️ Du Pain et des Idées 週末休，別排。</li>
+        <li><span class="t">14:00–16:00 🌳</span><b>Buttes-Chaumont</b>：懸崖、湖、山頂神廟、瀑布，躺草地放空。</li>
+        <li><span class="t">16:30 🛒</span><b>Marché des Enfants Rouges</b>——⚠️ <b>17:00 就關，要趕一點</b>，只夠快速逛 + 買個小吃。</li>
       </ul>
       <div class="pins">
+        <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Marche+Bastille+Boulevard+Richard-Lenoir+Paris">Marché Bastille</a>
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Canal+Saint-Martin+Paris">Canal Saint-Martin</a>
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Holybelly+5+Rue+Lucien+Sampaix+Paris">Holybelly</a>
         <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parc+des+Buttes-Chaumont+Paris">Buttes-Chaumont</a></div>
@@ -399,26 +438,25 @@
   <!-- 9/27 shared evening -->
   <div class="shared rv">
     <h4>傍晚（兩案共用）· 瑪黑血拼 + 慶祝晚餐</h4>
-    <p>孚日廣場 + 逛店（Merci、Mariage Frères、Enfants Rouges 市集），在瑪黑吃最後慶祝晚餐。瑪黑週日照常營業、氛圍比百貨好。</p>
+    <p><b>孚日廣場</b>綠地 + 逛店：Merci、Mariage Frères（買茶當伴手禮）。瑪黑週日照常營業、氛圍比百貨好。</p>
     <div class="pins">
       <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Place+des+Vosges+Paris">孚日廣場</a>
       <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Merci+concept+store+Paris">Merci</a>
-      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mariage+Freres+Marais+Paris">Mariage Frères</a>
-      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Marche+des+Enfants+Rouges+Paris">Enfants Rouges 市集</a></div>
+      <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mariage+Freres+Marais+Paris">Mariage Frères</a></div>
     <div class="food" style="margin-top:16px">
       <div class="food-h">🍽 慶祝晚餐 · 🍴 必吃小吃</div>
       <div class="frow"><span class="fchip c-meal">🍽 晚餐</span><div>
         <div class="f-name">Le Colimaçon <span class="alt">／ 備案 Au Bourguignon du Marais</span></div>
-        <div class="f-desc">瑪黑主街上、氛圍濃，油封鴨・蝸牛；備案是紅酒燉牛名店。都<b>週日有開、務必訂位</b>。</div>
+        <div class="f-desc">瑪黑主街上、氛圍濃，油封鴨・蝸牛・熔岩巧克力；備案是紅酒燉牛名店、開到 23:00。都<b>週日有開、務必訂位</b>。</div>
         <div class="pins">
           <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Colimacon+Rue+Vieille+du+Temple+Paris">Le Colimaçon</a>
           <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Au+Bourguignon+du+Marais+Paris">Au Bourguignon</a></div></div></div>
       <div class="frow"><span class="fchip c-snack">🍴 小吃</span><div>
         <div class="f-name">L'As du Fallafel（Rue des Rosiers）</div>
-        <div class="f-desc">巴黎最有名的中東炸豆袋餅，排隊也值得。（週六休、<b>週日剛好有開</b>）Breizh Café 可麗餅、Jacques Genin 巧克力焦糖也在瑪黑。</div>
+        <div class="f-desc">巴黎最有名的中東炸豆袋餅，排隊也值得。（週六休、<b>週日剛好開</b>）Breizh Café 可麗餅、Jacques Genin 巧克力焦糖也在瑪黑。</div>
         <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=L%27As+du+Fallafel+Rue+des+Rosiers+Paris">地圖</a></div></div></div>
     </div>
-    <p style="margin-top:14px"><b>想高效退稅／買大件</b>：Le Bon Marché（左岸、質感好、La Grande Épicerie 買食品伴手禮）或拉法葉／春天（週日開）；藥妝到 Citypharma（要排隊）。</p>
+    <p style="margin-top:14px"><b>想高效退稅／買大件</b>：Le Bon Marché（左岸、質感好，樓下 La Grande Épicerie 買食品伴手禮）或拉法葉／春天（週日開）；藥妝到 Citypharma（要排隊）。</p>
     <div class="pins">
       <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Le+Bon+Marche+Paris">Le Bon Marché</a>
       <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Galeries+Lafayette+Haussmann+Paris">拉法葉</a>
@@ -430,11 +468,12 @@
     <div class="day-head"><span class="d-num">DAY 06</span><span class="d-date">9 / 28</span>
       <span class="d-week">週一 · Mon</span><span class="d-theme">回程</span></div>
     <div class="entry"><div class="e-time soft">上午</div><div class="e-body">
-      <div class="e-title">Batignolles 咖啡可頌 · 最後散步</div>
-      <div class="e-desc">17 區隨便走進一間咖啡館都很道地，Square des Batignolles 再散一圈。</div></div></div>
+      <div class="e-title">Batignolles 咖啡 + 可頌 · 最後散步</div>
+      <div class="e-desc">17 區隨便走進一間咖啡館都很道地，Square des Batignolles 再散一圈。</div>
+      <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Square+des+Batignolles+Paris">Square des Batignolles</a></div></div></div>
     <div class="entry"><div class="e-time">10:00</div><div class="e-body">
       <div class="e-title">計程車前往 CDG（行李多）</div>
-      <div class="e-desc">抵達後辦退稅（PABLO 機器掃描）、報到、登機。下午班機返台。</div>
+      <div class="e-desc">抵達後辦退稅（<b>PABLO 機器</b>掃描）、報到、登機。下午班機返台。</div>
       <div class="pins"><a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Aeroport+Paris+Charles+de+Gaulle">CDG 機場</a></div></div></div>
   </section>
 
@@ -443,22 +482,23 @@
     <span class="d-num">MEMO</span>
     <h2>行前重點</h2>
     <div class="note-grid">
+      <div class="note todo"><h5>⚠️ 要先訂 / 先問</h5><ul>
+        <li><b>跟房東確認 11:30 能不能寄行李</b>（17:00 才入住，唯一會卡住的地方；備案 Nannybag／Bounce）。</li>
+        <li><b>訂位</b>：Brasserie Charlie（9/23 午餐）、Le Colimaçon（9/27 晚餐）。</li>
+        <li><b>訂票</b>：凱旋門登頂、聖米歇爾山修道院第一批、凡爾賽 Passport（若選 A）。</li>
+      </ul></div>
       <div class="note"><h5>交通</h5><ul>
-        <li>每人一張 <b>Navigo Easy 卡</b>（不能共用），或手機儲值。紙票 6 月起停用。</li>
-        <li>市區單程統一 <b>€2.55</b>（凡爾賽也是同價）。</li>
-        <li>CDG 進城要 <b>€14 機場專用票</b>；4 人多行李去程建議計程車。</li></ul></div>
+        <li>機場先買 <b>4 張機場專用票（約 €14／人）</b>進城，並辦 <b>Navigo Easy 卡</b>（每人一張、不能共用）。紙票 6 月起停用。</li>
+        <li>市區單程 <b>€2.55</b>（凡爾賽也是同價）。</li>
+        <li>回程 9/28 行李多，<b>建議計程車</b>。</li></ul></div>
       <div class="note"><h5>退稅</h5><ul>
         <li>非歐盟旅客，<b>同一間店單日滿約 €100</b> 才能辦。</li>
         <li>大店／百貨最順；瑪黑小店不一定提供。</li>
         <li>最後在 CDG 用 <b>PABLO 機器</b>掃描。</li></ul></div>
-      <div class="note"><h5>訂位 / 訂票</h5><ul>
-        <li>熱門餐廳（Le Paris 17、Le Colimaçon 等）<b>先訂位</b>。</li>
-        <li>凡爾賽若選 A，提前訂 <b>Passport 套票</b>。</li>
-        <li>聖母院（若順路想進）到巴黎後上官網訂。</li></ul></div>
       <div class="note"><h5>租車</h5><ul>
-        <li>還車別拖過 <b>「取車後 24 小時」</b>。</li>
-        <li>過路費、油錢<b>另計</b>。</li>
-        <li>帶主駕駕照 + 國際駕照 + 護照 + 登記名下信用卡。</li></ul></div>
+        <li>還車別拖過 <b>「取車後 24 小時」</b>（會跳第 3 天計費）。</li>
+        <li>過路費、油錢<b>另計</b>（來回約 €40–50 + €60–80）。</li>
+        <li>帶：主駕駕照 + <b>國際駕照</b> + 護照 + 登記名下信用卡。收費站備可感應／晶片卡。</li></ul></div>
     </div>
   </section>
 
